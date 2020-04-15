@@ -50,7 +50,7 @@ pipeline
             {
               steps 
               { 
-                 aquaMicroscanner imageName: dockerImage , notCompleted: 'exit 1', onDisallowed: 'fail'
+                 aquaMicroscanner imageName: dockerImage, notCompliesCmd: '', onDisallowed: 'fail', outputFormat: 'html'
               }
             }         
 
