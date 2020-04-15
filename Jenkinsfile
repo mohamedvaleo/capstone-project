@@ -45,6 +45,14 @@ pipeline
                     }
                 }
             }
+            
+            stage('Image Security Scan') 
+            {
+              steps 
+              { 
+                 aquaMicroscanner imageName: dockerImage , notCompleted: 'exit 1', onDisallowed: 'fail'
+              }
+            }         
 
             stage('Deploy Image') 
             {
