@@ -8,7 +8,7 @@ WORKDIR /app
 ## Step 2:
 # Install apache2
 RUN apt-get update
-RUN apt-get install -y apache2 && apt-get clean
+RUN apt-get install --no-install-recommends apache2=2.4.29-1ubuntu4.13 -y && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 ## Step 3:
 # Copy index html to apache2 html folder
@@ -21,4 +21,4 @@ Expose 80
 
 ## Step 5:
 # Run Apache in the foreground
-CMD apachectl -D FOREGROUND
+CMD ["apachectl", "-D", "FOREGROUND"]
