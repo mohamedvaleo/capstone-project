@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:latest
 
 ## Step 1:
 # Create a working directory
