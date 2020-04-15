@@ -53,9 +53,11 @@ pipeline
                     script 
                     {
                         echo "Deploy Docker Image"
-                        docker.withRegistry( '', dockerHubCredentials ) {
-                        dockerImage.push()
+                        docker.withRegistry( '', dockerHubCredentials ) 
+                        {
+                            dockerImage.push()
                             
+                        }
                     }
                 }
             }
