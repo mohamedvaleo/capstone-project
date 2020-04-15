@@ -50,7 +50,7 @@ pipeline
             {
               steps 
               { 
-                 aquaMicroscanner imageName: dockerImage, notCompliesCmd: '', onDisallowed: 'fail', outputFormat: 'html'
+                 aquaMicroscanner imageName: (registry + ":$BUILD_NUMBER") , notCompliesCmd: '', onDisallowed: 'fail', outputFormat: 'html'
               }
             }         
 
