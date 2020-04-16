@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:bionic-20200311
 
 ## Step 1:
 # Create a working directory
@@ -21,7 +21,6 @@ COPY . index.html /var/www/html/
 # Expose port 80
 Expose 80
 
-CMD echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 ## Step 5:
 # Run Apache in the foreground
