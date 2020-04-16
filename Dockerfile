@@ -21,6 +21,8 @@ COPY . index.html /var/www/html/
 # Expose port 80
 Expose 80
 
+CMD echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
 ## Step 5:
 # Run Apache in the foreground
 CMD ["apachectl", "-D", "FOREGROUND"]
