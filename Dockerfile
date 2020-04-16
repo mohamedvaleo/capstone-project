@@ -1,16 +1,19 @@
-FROM node
+FROM node:10
 
-RUN apt-get update && apt-get upgrade -y \
-    && apt-get clean
+# Create app directory
+WORKDIR /usr/src/app
 
-RUN mkdir /app
-WORKDIR /app
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
 
-COPY package.json /app/
-RUN npm install --only=production
+RUN npm install
+# If you are building your code for production
+# RUN npm ci --only=production
 
-COPY src /app/src
+# Bundle app source
+COPY . .
 
-EXPOSE 3000
-
-CMD [ "npm", "start" ]
+EXPOSE 8081
+CMD [ "node", "server.js" ]
