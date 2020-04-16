@@ -16,7 +16,7 @@ pipeline
                     script 
                     {
                         echo "Linting HTML File"
-                        sh 'tidy -q -e *html.html'
+                        sh 'tidy -q -e index.html'
                     }
                 }
             }
