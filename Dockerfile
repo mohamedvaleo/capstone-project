@@ -1,19 +1,26 @@
-FROM node:10
+FROM ubuntu:18.04
 
-# Create app directory
+## Step 1:
+# Create a working directory
 WORKDIR /app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY package*.json /app/
 
-RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
+## Step 2:
+# Install apache2
+RUN apt-get update -y &&\
+    apt-get install --no-install-recommends apache2=2.4.29-1ubuntu4.13 -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-# Bundle app source
-COPY src /app/src
+## Step 3:
+# Copy index html to apache2 html folder
+COPY . index.html /var/www/html/
 
-EXPOSE 8081
-CMD [ "node", "server.js" ]
+
+## Step 4:
+# Expose port 80
+Expose 80
+
+## Step 5:
+# Run Apache in the foreground
+CMD ["apachectl", "-D", "FOREGROUND"]
