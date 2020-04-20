@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: capstone-production
+spec:
+  selector:
+    matchLabels:
+      app: capstone-green
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: capstone-green
+    spec:
+      containers:
+        - name: capstone-green
+          image: mohamdoo23/capstone-registry:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
