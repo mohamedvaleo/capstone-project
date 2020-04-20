@@ -1,4 +1,3 @@
-https://circleci.com/gh/mohamedvaleo/microservices.svg?style=svg
 
 ## Project Summary
 using jenkins pipeline to deploy apache app with the help of blue and green deployment strategy.
