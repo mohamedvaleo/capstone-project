@@ -69,5 +69,37 @@ pipeline
                     }
                 }
             }
+
+             stage('Create Blue Deployment') 
+             {
+                steps 
+                {
+                    withAWS(region:'us-east-1', credentials:'aws_key') 
+                    {
+                        sh 'aws eks --region us-east-1 update-kubeconfig --name capstone-project'
+                        sh 'kubectl config use-context arn:aws:eks:us-east-1:610706151757:cluster/capstone-project'
+                        sh 'kubectl delete deployment capstone-staging'
+                        sh 'kubectl apply -f deploy-blue.yaml'
+                        sleep(time:10,unit:"SECONDS")
+                        sh 'kubectl apply -f service-blue.yaml'
+                    }
+                }
+            }
+
+            stage('Create Green Deployment') 
+             {
+                steps 
+                {
+                    withAWS(region:'us-east-1', credentials:'aws_key') 
+                    {
+                        sh 'aws eks --region us-east-1 update-kubeconfig --name capstone-project'
+                        sh 'kubectl config use-context arn:aws:eks:us-east-1:610706151757:cluster/capstone-project'
+                       // sh 'kubectl delete deployment capstone-staging'
+                        sh 'kubectl apply -f deploy-green.yaml'
+                        sleep(time:10,unit:"SECONDS")
+                        sh 'kubectl apply -f service-green.yaml'
+                    }
+                }
+            }
         }
 }
