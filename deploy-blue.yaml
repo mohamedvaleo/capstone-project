@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: capstone-staging
+spec:
+  selector:
+    matchLabels:
+      app: capstone-blue
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: capstone-blue
+    spec:
+      containers:
+        - name: capstone-blue
+          image: mohamdoo23/capstone-registry:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              protocol: TCP
