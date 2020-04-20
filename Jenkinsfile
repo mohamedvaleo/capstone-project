@@ -94,7 +94,7 @@ pipeline
                     {
                         sh 'aws eks --region us-east-1 update-kubeconfig --name capstone-project'
                         sh 'kubectl config use-context arn:aws:eks:us-east-1:610706151757:cluster/capstone-project'
-                       // sh 'kubectl delete deployment capstone-staging'
+                        sh 'kubectl delete deployment capstone-production'
                         sh 'kubectl apply -f deploy-green.yaml'
                         sleep(time:10,unit:"SECONDS")
                         sh 'kubectl apply -f service-green.yaml'
