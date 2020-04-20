@@ -6,8 +6,9 @@ metadata:
     run: capstone
 spec:
   ports:
-  - port: 80
-    protocol: TCP
+  - protocol: TCP
+    port: 80
+    targetPort: 80
   selector:
     run: capstone-blue
   type: LoadBalancer
