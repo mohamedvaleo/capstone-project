@@ -19,7 +19,7 @@ COPY . index.html /var/www/html/
 
 ## Step 4:
 # Expose port 80
-Expose 80
+Expose 3000
 
 ## Step 5:
 # Run Apache in the foreground
